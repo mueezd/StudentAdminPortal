@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\deepro__\\Workshop\\Projects\\StudentAdminPortal\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API.csproj": {}
+    "D:\\deepro__\\Workshop\\Projects\\StudentAdminPortal\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API.csproj": {}
   },
   "projects": {
-    "D:\\deepro__\\Workshop\\Projects\\StudentAdminPortal\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API.csproj": {
+    "D:\\deepro__\\Workshop\\Projects\\StudentAdminPortal\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\deepro__\\Workshop\\Projects\\StudentAdminPortal\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API.csproj",
+        "projectUniqueName": "D:\\deepro__\\Workshop\\Projects\\StudentAdminPortal\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API.csproj",
         "projectName": "StudentAdminPortal.API",
-        "projectPath": "D:\\deepro__\\Workshop\\Projects\\StudentAdminPortal\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API.csproj",
+        "projectPath": "D:\\deepro__\\Workshop\\Projects\\StudentAdminPortal\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API.csproj",
         "packagesPath": "C:\\Users\\deepro__\\.nuget\\packages\\",
-        "outputPath": "D:\\deepro__\\Workshop\\Projects\\StudentAdminPortal\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API\\obj\\",
+        "outputPath": "D:\\deepro__\\Workshop\\Projects\\StudentAdminPortal\\StudentAdminPortal.API\\StudentAdminPortal.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\deepro__\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,6 +41,16 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
