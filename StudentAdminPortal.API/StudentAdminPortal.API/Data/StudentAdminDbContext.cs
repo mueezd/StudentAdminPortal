@@ -11,9 +11,9 @@ namespace StudentAdminPortal.API.Data
 
         }
 
-        public DbSet<StudentModel> Students { get; set; }
-        public DbSet<GenderModel> Genders { get; set; }
-        public DbSet<AddressModel> Addresses { get; set; }
+        public DbSet<Student> Student { get; set; }
+        public DbSet<Gender> Gender { get; set; }
+        public DbSet<Address> Address { get; set; }
 
     }
 }

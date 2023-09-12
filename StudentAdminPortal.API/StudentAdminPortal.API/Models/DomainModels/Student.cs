@@ -1,9 +1,9 @@
-﻿using StudentAdminPortal.API.Models.DomainModels;
+﻿
 using System;
 
-namespace StudentAdminPortal.API.Models
+namespace StudentAdminPortal.API.Models.DomainModels
 {
-    public class StudentModel
+    public class Student
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }
@@ -15,8 +15,7 @@ namespace StudentAdminPortal.API.Models
         public Guid GenderId { get; set; }
 
         //Navigation Properties
-
-        public GenderModel Gender { get; set; }
-        public AddressModel Address { get; set; }
+        public Gender Gender { get; set; }
+        public Address Address { get; set; }
     }
 }

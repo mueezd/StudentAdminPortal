@@ -2,7 +2,7 @@
 
 namespace StudentAdminPortal.API.Models.DomainModels
 {
-    public class AddressModel
+    public class Address
     {
         public Guid Id { get; set; }
         public string PhysicalAddress { get; set; }

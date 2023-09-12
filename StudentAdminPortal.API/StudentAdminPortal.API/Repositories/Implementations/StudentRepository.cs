@@ -1,9 +1,13 @@
-﻿using StudentAdminPortal.API.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using StudentAdminPortal.API.Data;
 using StudentAdminPortal.API.Models;
 using StudentAdminPortal.API.Models.DomainModels;
+using StudentAdminPortal.API.Models.DTO;
 using StudentAdminPortal.API.Repositories.Interface;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace StudentAdminPortal.API.Repositories.Implementations
 {
@@ -15,11 +19,9 @@ namespace StudentAdminPortal.API.Repositories.Implementations
         {
             _dbContext = dbContext;
         }
-        public List<StudentModel> GetStudents()
+        public async Task<List<Student>> GetStudentsAsync()
         {
-             return _dbContext.Students.ToList();
+             return await _dbContext.Student.Include(nameof(Gender)).Include(nameof(Address)).ToListAsync();
         }
-
-
     }
 }

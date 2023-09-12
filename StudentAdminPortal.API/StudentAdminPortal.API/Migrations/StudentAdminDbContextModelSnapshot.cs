@@ -19,7 +19,7 @@ namespace StudentAdminPortal.API.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("StudentAdminPortal.API.Models.DomainModels.AddressModel", b =>
+            modelBuilder.Entity("StudentAdminPortal.API.Models.DomainModels.Address", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -36,10 +36,13 @@ namespace StudentAdminPortal.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Addresses");
+                    b.HasIndex("StudentId")
+                        .IsUnique();
+
+                    b.ToTable("Address");
                 });
 
-            modelBuilder.Entity("StudentAdminPortal.API.Models.DomainModels.GenderModel", b =>
+            modelBuilder.Entity("StudentAdminPortal.API.Models.DomainModels.Gender", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -50,16 +53,13 @@ namespace StudentAdminPortal.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genders");
+                    b.ToTable("Gender");
                 });
 
-            modelBuilder.Entity("StudentAdminPortal.API.Models.StudentModel", b =>
+            modelBuilder.Entity("StudentAdminPortal.API.Models.DomainModels.Student", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("AddressId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateOfBirth")
@@ -85,28 +85,34 @@ namespace StudentAdminPortal.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
-
                     b.HasIndex("GenderId");
 
-                    b.ToTable("Students");
+                    b.ToTable("Student");
                 });
 
-            modelBuilder.Entity("StudentAdminPortal.API.Models.StudentModel", b =>
+            modelBuilder.Entity("StudentAdminPortal.API.Models.DomainModels.Address", b =>
                 {
-                    b.HasOne("StudentAdminPortal.API.Models.DomainModels.AddressModel", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
+                    b.HasOne("StudentAdminPortal.API.Models.DomainModels.Student", null)
+                        .WithOne("Address")
+                        .HasForeignKey("StudentAdminPortal.API.Models.DomainModels.Address", "StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-                    b.HasOne("StudentAdminPortal.API.Models.DomainModels.GenderModel", "Gender")
+            modelBuilder.Entity("StudentAdminPortal.API.Models.DomainModels.Student", b =>
+                {
+                    b.HasOne("StudentAdminPortal.API.Models.DomainModels.Gender", "Gender")
                         .WithMany()
                         .HasForeignKey("GenderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Address");
-
                     b.Navigation("Gender");
+                });
+
+            modelBuilder.Entity("StudentAdminPortal.API.Models.DomainModels.Student", b =>
+                {
+                    b.Navigation("Address");
                 });
 #pragma warning restore 612, 618
         }

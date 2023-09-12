@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using StudentAdminPortal.API.Models;
 using StudentAdminPortal.API.Models.DTO;
 using StudentAdminPortal.API.Repositories.Interface;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace StudentAdminPortal.API.Controllers
 {
@@ -12,39 +14,21 @@ namespace StudentAdminPortal.API.Controllers
     public class StudentsController : ControllerBase
     {
         private readonly IStudentRepository _studentRepository;
+        private readonly IMapper _mapper;
 
-        public StudentsController(IStudentRepository studentRepository)
+        public StudentsController(IStudentRepository studentRepository, IMapper mapper)
         {
             _studentRepository = studentRepository;
+            _mapper = mapper;
         }
 
 
         [HttpGet]
         [Route("[controller]")]
-        public IActionResult GetAllStudents()
+        public async Task<IActionResult> GetAllStudents()
         {
-            var students = _studentRepository.GetStudents();
-
-            var dtoStudents = new List<StudentDto>();
-
-            foreach (var student in students)
-            {
-                dtoStudents.Add(new StudentDto()
-                {
-                    Id = student.Id,
-                    FirstName = student.FirstName,
-                    LastName = student.LastName,
-                    DateOfBirth = student.DateOfBirth,
-                    Email = student.Email,
-                    Mobile = student.Mobile,
-                    ProfileImageUrl = student.ProfileImageUrl,
-                    GenderId = student.GenderId
-                });
-            }
-
-
-            return Ok(dtoStudents);
+            var students = await _studentRepository.GetStudentsAsync();
+            return Ok(_mapper.Map<List<StudentDto>>(students));
         }
-
     }
 }
