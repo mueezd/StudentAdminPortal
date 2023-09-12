@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+    /* Center the container horizontally on the page */
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Set a maximum width to control content width */
+    max-width: 1200px;
+    /* Adjust as needed */
+
+    /* Add some padding to the sides, keeping content away from edges */
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+.page-header {
+    background: #f1f1f1;
+}
+
+.page-header h1 {
+    padding: 16px 0;
+    margin: 0;
+}
+
+
+.ml-1 {
+    margin-left: 1em;
+}
+.mt-1{
+    margin-top: 1em;
+}
