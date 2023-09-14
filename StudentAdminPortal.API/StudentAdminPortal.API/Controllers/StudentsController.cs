@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using StudentAdminPortal.API.Models;
+using StudentAdminPortal.API.Models.DomainModels;
 using StudentAdminPortal.API.Models.DTO;
 using StudentAdminPortal.API.Repositories.Interface;
+using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace StudentAdminPortal.API.Controllers
@@ -29,6 +32,22 @@ namespace StudentAdminPortal.API.Controllers
         {
             var students = await _studentRepository.GetStudentsAsync();
             return Ok(_mapper.Map<List<StudentDto>>(students));
+        }
+
+        [HttpGet]
+        [Route("[controller]/{studentId:guid}")]
+        public async Task<IActionResult> GetStudentById([FromRoute] Guid studentId)
+        {
+            //fetch single student detais
+            var stduent = await _studentRepository.GetStudentByIdAsync(studentId);
+
+            //return student
+            if (stduent == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_mapper.Map<StudentDto>(stduent));
         }
     }
 }

@@ -89,7 +89,7 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "./node_modules/flexboxgrid/dist/flexboxgrid.min.css",
+              "../node_modules/flexboxgrid/css/flexboxgrid.css",
               "src/styles.css"
             ],
             "scripts": []

@@ -1,0 +1,106 @@
+<div class="page-header">
+  <div class="container">
+    <h1>View Student</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row top-row">
+    <div class="col-xs-12 row end-xs">
+      <a routerLink="/students" color="primary" mat-raised-button>
+        <mat-icon>chevron_left</mat-icon>
+        Back to Students
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <!-- Student Detsils -->
+      <form #studentDetsilsForm="ngForm">
+        <div class="row">
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input matInput placeholder="First Name" [(ngModel)]="student.firstName" name="firstName"/>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input matInput placeholder="Last Name" [(ngModel)]="student.lastName" name="lastName"/>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Date Of Birth</mat-label>
+              <input
+                [matDatepicker]="picker"
+                matInput
+                placeholder="Date Of Birth"
+                [(ngModel)]="student.dateOfBirth" name="dateOfBirth"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" [(ngModel)]="student.email" name="email"/>
+            </mat-form-field>
+          </div>
+          <div class="col-xs-6">
+            <mat-form-field appearance="outline">
+              <mat-label>Phone Number</mat-label>
+              <input matInput placeholder="Phone Number" [(ngModel)]="student.mobile" name="mobile"/>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Gender</mat-label>
+              <input matInput placeholder="Gender" [(ngModel)]="student.gender.description" name="description"/>
+            </mat-form-field>
+            <!-- <mat-form-field appearance="outline">
+              <mat-label>Gender</mat-label>
+              <mat-select> </mat-select>
+            </mat-form-field> -->
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <mat-form-field appearance="outline">
+              <mat-label>Physical Address</mat-label>
+              <textarea matInput placeholder="Physical Address" [(ngModel)]="student.address.physicalAddress" name="physicalAddress"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12">
+              <mat-form-field appearance="outline">
+                <mat-label>Postal Address</mat-label>
+                <textarea matInput placeholder="Postal Address" [(ngModel)]="student.address.postalAddress" name="postalAddress"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+      </form>
+    </div>
+    <div class="col-xs-6">
+      <!-- profile image -->
+    </div>
+  </div>
+</div>

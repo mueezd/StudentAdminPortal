@@ -10,7 +10,7 @@ import { MatSort } from '@angular/material/sort';
   templateUrl: './students.component.html',
   styleUrls: ['./students.component.css'],
 })
-export class StudentsComponent implements OnInit, OnDestroy {
+export class StudentsComponent implements OnInit {
   students: Student[] = [];
   displayedColumns: string[] = [
     'firstName',
@@ -19,6 +19,7 @@ export class StudentsComponent implements OnInit, OnDestroy {
     'email',
     'mobile',
     'gender',
+    'action'
   ];
 
   dataSource: MatTableDataSource<Student> = new MatTableDataSource<Student>();
@@ -55,7 +56,5 @@ export class StudentsComponent implements OnInit, OnDestroy {
     this.dataSource.filter = this.filterString.trim().toLowerCase();
   }
 
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+
 }

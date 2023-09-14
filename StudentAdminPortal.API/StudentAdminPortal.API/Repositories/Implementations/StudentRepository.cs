@@ -4,6 +4,7 @@ using StudentAdminPortal.API.Models;
 using StudentAdminPortal.API.Models.DomainModels;
 using StudentAdminPortal.API.Models.DTO;
 using StudentAdminPortal.API.Repositories.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -19,6 +20,16 @@ namespace StudentAdminPortal.API.Repositories.Implementations
         {
             _dbContext = dbContext;
         }
+
+       
+
+        public async Task<Student> GetStudentByIdAsync(Guid studentId)
+        {
+            return await _dbContext.Student
+                .Include(nameof(Gender)).Include(nameof(Address))
+                .FirstOrDefaultAsync(x => x.Id == studentId);
+        }
+
         public async Task<List<Student>> GetStudentsAsync()
         {
              return await _dbContext.Student.Include(nameof(Gender)).Include(nameof(Address)).ToListAsync();
