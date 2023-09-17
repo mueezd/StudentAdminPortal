@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using StudentAdminPortal.API.Models;
@@ -7,6 +8,7 @@ using StudentAdminPortal.API.Models.DTO;
 using StudentAdminPortal.API.Repositories.Interface;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Security.Permissions;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -19,11 +21,13 @@ namespace StudentAdminPortal.API.Controllers
     {
         private readonly IStudentRepository _studentRepository;
         private readonly IMapper _mapper;
+        private readonly IImageRepository _imageRepository;
 
-        public StudentsController(IStudentRepository studentRepository, IMapper mapper)
+        public StudentsController(IStudentRepository studentRepository, IMapper mapper, IImageRepository imageRepository)
         {
             _studentRepository = studentRepository;
             _mapper = mapper;
+            _imageRepository = imageRepository;
         }
 
 
@@ -90,6 +94,35 @@ namespace StudentAdminPortal.API.Controllers
             var student = await _studentRepository.AddStudentAsync(_mapper.Map<Student>(request));
             return CreatedAtAction(nameof(GetStudentById), new { studentId = student.Id}, 
                 _mapper.Map<StudentDto>(student));
+        }
+
+
+        [HttpPost]
+        [Route("[controller]/{studentId:guid}/upload-image")]
+        public async Task<IActionResult> UploadImage([FromRoute] Guid studentId, IFormFile profileImage)
+        {
+            // check if Id Exist in db
+
+            if (await _studentRepository.Exists(studentId))
+            {
+                var fileName = Guid.NewGuid() + Path.GetExtension(profileImage.FileName);
+                // Upload student image to local storage
+                var fileImagePath = await _imageRepository.UploadImage(profileImage, fileName);
+
+                if (await _studentRepository.UpdateProfileImage(studentId, fileImagePath))
+                {
+                    return Ok(fileImagePath);
+                }
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error Upload Image");
+                // update profile image path in the database
+
+
+            }
+
+            return NotFound();
+
+
         }
 
     }

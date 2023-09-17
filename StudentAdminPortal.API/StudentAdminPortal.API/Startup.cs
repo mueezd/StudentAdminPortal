@@ -48,6 +48,7 @@ namespace StudentAdminPortal.API
 
 
             services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IImageRepository, ImageRepository>();
 
 
 
