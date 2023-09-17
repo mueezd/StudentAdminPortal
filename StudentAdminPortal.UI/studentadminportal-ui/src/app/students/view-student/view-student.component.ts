@@ -34,6 +34,9 @@ export class ViewStudentComponent implements OnInit {
     },
   };
 
+  isNewStudent = false;
+  header = '';
+
   genderList: Gender[] = [];
 
   constructor(
@@ -49,11 +52,20 @@ export class ViewStudentComponent implements OnInit {
       this.studentId = params.get('id');
 
       if (this.studentId) {
-        this.studentService
+        // if the rount conain key work add
+
+        if (this.studentId.toLowerCase() === 'Add'.toLowerCase()) {
+          this.isNewStudent = true;
+          this.header = 'Add New Student';
+        } else {
+          this.isNewStudent = false;
+          this.header = 'Update Student';
+          this.studentService
           .getStudentById(this.studentId)
           .subscribe((successResponse) => {
             this.student = successResponse;
           });
+        }
       }
     });
 
@@ -66,7 +78,7 @@ export class ViewStudentComponent implements OnInit {
     this.studentService.updateStudent(this.student.id, this.student).subscribe(
       (successResponse) => {
         this.snackbar.open('Student Update Successfully', undefined, {
-          duration: 2000
+          duration: 2000,
         });
       },
       (errorResponse) => {
@@ -75,22 +87,35 @@ export class ViewStudentComponent implements OnInit {
     );
   }
 
-  onDelete(): void{
-    this.studentService.deleteStudent(this.student.id)
-    .subscribe(
+  onDelete(): void {
+    this.studentService.deleteStudent(this.student.id).subscribe(
       (successResponse) => {
         this.snackbar.open('Student Deleted Successfully', undefined, {
-          duration: 2000
+          duration: 2000,
         });
 
         setTimeout(() => {
           this.router.navigateByUrl('students');
         }, 2000);
-        
       },
       (errorResponse) => {
         //log It
       }
-    )
+    );
+  }
+
+  onAdd(): void {
+    this.studentService.addStudent(this.student).subscribe(
+      (successResponse) => {
+        this.snackbar.open('Student Added Successfully', undefined, {
+          duration: 2000,
+        });
+
+        setTimeout(() => {
+          this.router.navigateByUrl(`students/${successResponse.id}`);
+        }, 2000);
+      },
+      (errorResponse) => {}
+    );
   }
 }

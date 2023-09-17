@@ -7,6 +7,7 @@ using StudentAdminPortal.API.Models.DTO;
 using StudentAdminPortal.API.Repositories.Interface;
 using System;
 using System.Collections.Generic;
+using System.Security.Permissions;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -35,7 +36,7 @@ namespace StudentAdminPortal.API.Controllers
         }
 
         [HttpGet]
-        [Route("[controller]/{studentId:guid}")]
+        [Route("[controller]/{studentId:guid}"), ActionName("GetStudentById")]
         public async Task<IActionResult> GetStudentById([FromRoute] Guid studentId)
         {
             //fetch single student detais
@@ -80,6 +81,15 @@ namespace StudentAdminPortal.API.Controllers
             }
 
             return NotFound();
+        }
+
+        [HttpPost]
+        [Route("[controller]/Add")]
+        public async Task<IActionResult> AddStudentAsync([FromBody] AddStudentRequestDto request)
+        {
+            var student = await _studentRepository.AddStudentAsync(_mapper.Map<Student>(request));
+            return CreatedAtAction(nameof(GetStudentById), new { studentId = student.Id}, 
+                _mapper.Map<StudentDto>(student));
         }
 
     }
