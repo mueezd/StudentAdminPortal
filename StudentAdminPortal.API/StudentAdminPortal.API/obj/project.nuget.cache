@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "rWVDm7mB4QTKUksjpWZ1RBJEof9pjRPqvjb6DH5T+0nrRdEr+Y1enG/4Y/9CQSEerMQxnQFThq3mGrhmScGnlg==",
+  "dgSpecHash": "sff0ttShZm9TrT8xlSb4CAFTYmIrKbVejdTUGYHgZ94UOXzNZ2M9ukyOSmZMfWiwuRcCq1aaWoskkCdG+mkchA==",
   "success": true,
   "projectFilePath": "D:\\deepro__\\Workshop\\Projects\\StudentAdminPortal\\StudentAdminPortal.API\\StudentAdminPortal.API\\StudentAdminPortal.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\deepro__\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\deepro__\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\deepro__\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
+    "C:\\Users\\deepro__\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\deepro__\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\deepro__\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\deepro__\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\deepro__\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

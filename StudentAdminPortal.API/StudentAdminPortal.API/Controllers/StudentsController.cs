@@ -101,28 +101,40 @@ namespace StudentAdminPortal.API.Controllers
         [Route("[controller]/{studentId:guid}/upload-image")]
         public async Task<IActionResult> UploadImage([FromRoute] Guid studentId, IFormFile profileImage)
         {
-            // check if Id Exist in db
-
-            if (await _studentRepository.Exists(studentId))
+            var validExtention = new List<string>
             {
-                var fileName = Guid.NewGuid() + Path.GetExtension(profileImage.FileName);
-                // Upload student image to local storage
-                var fileImagePath = await _imageRepository.UploadImage(profileImage, fileName);
+                ".jpeg",
+                ".png",
+                ".gif",
+                ".jpg"
+            };
+            // check if Id Exist in db
+            if (profileImage != null && profileImage.Length > 0)
+            {
+                var extention = Path.GetExtension(profileImage.FileName);
 
-                if (await _studentRepository.UpdateProfileImage(studentId, fileImagePath))
+                if (validExtention.Contains(extention))
                 {
-                    return Ok(fileImagePath);
+                    if (await _studentRepository.Exists(studentId))
+                    {
+                        var fileName = Guid.NewGuid() + Path.GetExtension(profileImage.FileName);
+                        // Upload student image to local storage
+                        var fileImagePath = await _imageRepository.UploadImage(profileImage, fileName);
+
+                        if (await _studentRepository.UpdateProfileImage(studentId, fileImagePath))
+                        {
+                            return Ok(fileImagePath);
+                        }
+
+                        return StatusCode(StatusCodes.Status500InternalServerError, "Error Upload Image");
+                        // update profile image path in the database
+                    }
                 }
 
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error Upload Image");
-                // update profile image path in the database
-
-
+                return BadRequest("This is not a valid image format");
+                
             }
-
             return NotFound();
-
-
         }
 
     }

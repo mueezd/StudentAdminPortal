@@ -69,3 +69,6 @@ D:\deepro__\Workshop\Projects\StudentAdminPortal\StudentAdminPortal.API\StudentA
 D:\deepro__\Workshop\Projects\StudentAdminPortal\StudentAdminPortal.API\StudentAdminPortal.API\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 D:\deepro__\Workshop\Projects\StudentAdminPortal\StudentAdminPortal.API\StudentAdminPortal.API\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 D:\deepro__\Workshop\Projects\StudentAdminPortal\StudentAdminPortal.API\StudentAdminPortal.API\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+D:\deepro__\Workshop\Projects\StudentAdminPortal\StudentAdminPortal.API\StudentAdminPortal.API\bin\Debug\net5.0\FluentValidation.dll
+D:\deepro__\Workshop\Projects\StudentAdminPortal\StudentAdminPortal.API\StudentAdminPortal.API\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
+D:\deepro__\Workshop\Projects\StudentAdminPortal\StudentAdminPortal.API\StudentAdminPortal.API\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
