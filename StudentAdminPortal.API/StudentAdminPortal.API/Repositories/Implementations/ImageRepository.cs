@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using StudentAdminPortal.API.Repositories.Interface;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -9,8 +10,7 @@ namespace StudentAdminPortal.API.Repositories.Implementations
     {
         public async Task<string> UploadImage(IFormFile file, string fileName)
         {
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"Recources\Images", fileName);
-
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"Resources\Images", fileName);
             using Stream fileStream = new FileStream(filePath, FileMode.Create);
             await file.CopyToAsync(fileStream);
             return GetServerRelativePath(filePath);
@@ -19,7 +19,7 @@ namespace StudentAdminPortal.API.Repositories.Implementations
 
         private string GetServerRelativePath(string fileName)
         {
-            return Path.Combine(@"Recources\Images", fileName);
+            return Path.Combine(@"Resources\Images", fileName);
         }
     }
 }
